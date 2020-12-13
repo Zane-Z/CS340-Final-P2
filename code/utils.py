@@ -27,6 +27,9 @@ def flatten_csv_y(path, nfiles):
         f = open(path + str(i) + ".csv", "rb")
         orig = pd.read_csv(f, header=0, sep=', ', usecols=["x","y"])
         row = orig.to_numpy().flatten()
+        if row.size != 60:
+            filler = np.full(60-row.size, row[row.size - 1])
+            row = np.append(row, filler)
         fl[i] = row
         f.close()
     return fl

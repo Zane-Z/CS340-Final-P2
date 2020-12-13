@@ -3,6 +3,8 @@ import utils
 import time
 from neural_net import NeuralNet
 
+from sklearn.metrics import mean_squared_error
+
 # from sklearn.preprocessing import LabelBinarizer
 import numpy as np
 
@@ -13,7 +15,7 @@ if __name__ == "__main__":
     f.close()
 
     pathXtr = path + "train/X/X_"
-    NXtr = 10
+    NXtr = 2307
     Xtr = utils.flatten_csv_X(pathXtr, NXtr)
 
     pathytr = path + "train/y/y_"
@@ -33,5 +35,5 @@ if __name__ == "__main__":
 
     # Comput training error
     yhat = model.predict(Xtr)
-    trainError = np.mean(yhat != ytr)
+    trainError = np.sqrt(mean_squared_error(ytr.flatten(),yhat.flatten()))
     print("Training error = ", trainError)
