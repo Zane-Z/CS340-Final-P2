@@ -4,6 +4,7 @@ import time
 from neural_net import NeuralNet
 
 # from sklearn.preprocessing import LabelBinarizer
+import numpy as np
 
 if __name__ == "__main__":
 
