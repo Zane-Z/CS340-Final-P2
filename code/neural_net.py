@@ -45,14 +45,14 @@ class NeuralNet():
 
         yhat = Z
         
-        if self.classification: # softmax- TODO: use logsumexp trick to avoid overflow
-            tmp = np.sum(np.exp(yhat), axis=1)
-            # f = -np.sum(yhat[y.astype(bool)] - np.log(tmp))
-            f = -np.sum(yhat[y.astype(bool)] - log_sum_exp(yhat))
-            grad = np.exp(yhat) / tmp[:,None] - y
-        else:  # L2 loss
-            f = 0.5*np.sum((yhat-y)**2)  
-            grad = yhat-y # gradient for L2 loss
+        # if self.classification: # softmax- TODO: use logsumexp trick to avoid overflow
+        #     tmp = np.sum(np.exp(yhat), axis=1)
+        #     # f = -np.sum(yhat[y.astype(bool)] - np.log(tmp))
+        #     f = -np.sum(yhat[y.astype(bool)] - log_sum_exp(yhat))
+        #     grad = np.exp(yhat) / tmp[:,None] - y
+        # else:  # L2 loss
+        f = 0.5*np.sum((yhat-y)**2)  
+        grad = yhat-y # gradient for L2 loss
 
         grad_W = grad.T @ activations[-2]
         grad_b = np.sum(grad, axis=0)
@@ -137,10 +137,10 @@ class NeuralNet():
         for W, b in self.weights:
             Z = X @ W.T + b
             X = 1/(1+np.exp(-Z))
-        if self.classification:
-            return np.argmax(Z,axis=1)
-        else:
-            return Z
+        # if self.classification:
+        #     return np.argmax(Z,axis=1)
+        # else:
+        return Z
 
 
 
