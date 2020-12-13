@@ -15,7 +15,7 @@ def flatten_csv_X(path, nfiles):
 
     for i in range(0,nfiles + 1):
         f = open(path + str(i) + ".csv", "rb")
-        orig = pd.read_csv(f, header=0, sep=', ', usecols=["x0","y0","x1","y1","x2","y2","x3","y3","x4","y4","x5","y5","x6","y6","x7","y7","x8","y8","x9","y9"])
+        orig = pd.read_csv(f, header=0, sep=', ', usecols=["x0","x1","x2","x3","x4","x5","x6","x7","x8","x9"])  #usecols=["x0","y0","x1","y1","x2","y2","x3","y3","x4","y4","x5","y5","x6","y6","x7","y7","x8","y8","x9","y9"]
         row = orig.to_numpy().flatten()
         fl[i] = row
         f.close()
@@ -25,7 +25,7 @@ def flatten_csv_y(path, nfiles):
     fl = np.zeros((nfiles+1,60))
     for i in range(0,nfiles + 1):
         f = open(path + str(i) + ".csv", "rb")
-        orig = pd.read_csv(f, header=0, sep=', ', usecols=["x","y"])
+        orig = pd.read_csv(f, header=0, sep=', ', usecols=["x"])
         row = orig.to_numpy().flatten()
         fl[i] = row
         f.close()
