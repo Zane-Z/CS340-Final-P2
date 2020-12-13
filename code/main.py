@@ -15,8 +15,11 @@ if __name__ == "__main__":
     f.close()
 
     pathXtr = path + "train/X/X_"
+    pathXtest = path + "test/X/X_"
+    n_test = 19
     NXtr = 2307
     Xtr = utils.flatten_csv_X(pathXtr, NXtr)
+    X_test = utils.flatten_csv_X(pathXtest, n_test)
 
     pathytr = path + "train/y/y_"
     Nytr = NXtr
@@ -37,3 +40,13 @@ if __name__ == "__main__":
     yhat = model.predict(Xtr)
     trainError = np.sqrt(mean_squared_error(ytr.flatten(),yhat.flatten()))
     print("Training error = ", trainError)
+
+    # Compute testing error
+    y_test = model.predict(X_test)
+
+    print(y_test.shape)
+    y_test = y_test.flatten()
+    print(y_test.shape)
+    y_test = y_test.T
+    print(y_test.shape)
+    np.savetxt("y_test.csv", y_test, delimiter=",")
