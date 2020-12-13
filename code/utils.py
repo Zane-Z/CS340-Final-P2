@@ -7,7 +7,6 @@ import pandas as pd
 # throws regex separaters warning but seems to cause no issue with parsing the csv
 def flatten_csv(path, nfiles):
 
-    # flatten each train/X_###
     fl = np.zeros((nfiles+1,220))
 
     for i in range(0,nfiles + 1):
