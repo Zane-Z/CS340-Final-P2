@@ -94,7 +94,7 @@ class NeuralNet():
         weights_flat = flatten_weights(weights)
 
         # utils.check_gradient(self, X, y, len(weights_flat), epsilon=1e-6)
-        weights_flat_new, f = findMin.findMin(self.funObj, weights_flat, self.max_iter, X, y, verbose=True)
+        weights_flat_new, f = findMin.findMin(self.funObj, weights_flat, self.max_iter, X, y, verbose=False)
 
         self.weights = unflatten_weights(weights_flat_new, self.layer_sizes)
 
